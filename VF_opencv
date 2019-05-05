@@ -4,22 +4,24 @@ import numpy as np
 import cv2
 from matplotlib import pyplot as plt
 
+def detectFace():
+    face_cascade = cv2.CascadeClassifier('/openCVDir/opencv-3.4.0/data/haarcascades/haarcascade_frontalface_alt.xml')
 
-face_cascade = cv2.CascadeClassifier('/openCVDir/opencv-3.4.0/data/haarcascades/haarcascade_frontalface_alt.xml')
+    img = cv2.imread('./images/family.jpg.')
+    grayImage = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
-img = cv2.imread('./images/family.jpg.')
-grayImage = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-
-plt.figure(figsize=(12,8))
-plt.imshow(grayImage, cmap = 'gray')
-cv2.xticks([])
-plt.yticks([])
-plt.show()
+    plt.figure(figsize=(12,8))
+    plt.imshow(grayImage, cmap = 'gray')
+    plt.xticks([])
+    plt.yticks([])
+    plt.show()
 
     
-faces = face_cascade.detectMultiScale(grayImage, 1.03, 5)
+    faces = face_cascade.detectMultiScale(grayImage, 1.03, 5)
 
-print(faces.shape)
-print("Numbers of faces detected: " + str(faces.shape[0]))
+    print(faces.shape)
+    print("Numbers of faces detected: " + str(faces.shape[0]))
+
+detectFace()
 
 
